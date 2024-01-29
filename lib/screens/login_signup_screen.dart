@@ -194,13 +194,9 @@ class _LoginSignupState extends State<LoginSignup>
                 foregroundColor: Colors.white, // text color
                 elevation: 5,
                 visualDensity: VisualDensity.compact),
-            onPressed: () {
-              if (_getButtonLabel() == 'Login') {
-                auth().signInWithEmailAndPassword(
-                    email: _emailController.text,
-                    password: _passwordController.text);
-              }
-            },
+            onPressed: _getButtonLabel() == 'Login'
+                ? signInWithEmailAndPassword
+                : createUserWithEmailAndPassword,
             child: Text(_getButtonLabel()),
           ),
         ),
