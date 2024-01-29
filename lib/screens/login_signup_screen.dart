@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:vigilcn/services/auth.dart';
 
 enum AuthState { login, signup, forgotPassword }
 
@@ -12,11 +14,35 @@ class LoginSignup extends StatefulWidget {
 
 class _LoginSignupState extends State<LoginSignup>
     with TickerProviderStateMixin {
+  String? errorMessage = '';
+  bool isLogin = true;
   AuthState _authState = AuthState.login;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+
+  Future<void> signInWithEmailAndPassword() async {
+    try {
+      await auth().signInWithEmailAndPassword(
+          email: _emailController.text, password: _passwordController.text);
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = e.message;
+      });
+    }
+  }
+
+  Future<void> createUserWithEmailAndPassword() async {
+    try {
+      await auth().createUserWithEmailAndPassword(
+          email: _emailController.text, password: _passwordController.text);
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = e.message;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,26 +54,23 @@ class _LoginSignupState extends State<LoginSignup>
             fit: BoxFit.cover,
           ),
           Center(
-            child: Padding(
-              padding:
-                  const EdgeInsets.only(bottom: 170, left: 16.0, right: 16.0),
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Image.asset(
-                      'lib/assets/Vigilcn_logo_login.png',
-                      height: 120,
-                      width: 120,
-                    ),
-                    const SizedBox(
-                      height: 83,
-                    ),
-                    _buildAuthFields(),
-                    const SizedBox(height: 20),
-                    _buildSwitchAuthText(),
-                  ],
-                ),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Image.asset(
+                    'lib/assets/Vigilcn_logo_login.png',
+                    height: 120,
+                    width: 120,
+                  ),
+                  const SizedBox(
+                    height: 73,
+                  ),
+                  _buildAuthFields(),
+                  const SizedBox(height: 20),
+                  _buildSwitchAuthText(),
+                ],
               ),
             ),
           ),
@@ -172,7 +195,11 @@ class _LoginSignupState extends State<LoginSignup>
                 elevation: 5,
                 visualDensity: VisualDensity.compact),
             onPressed: () {
-              // Handle authentication
+              if (_getButtonLabel() == 'Login') {
+                auth().signInWithEmailAndPassword(
+                    email: _emailController.text,
+                    password: _passwordController.text);
+              }
             },
             child: Text(_getButtonLabel()),
           ),
@@ -186,22 +213,26 @@ class _LoginSignupState extends State<LoginSignup>
     String switchTextTwo;
     String message;
     AuthState switchToState;
+    AuthState switchToStateTwo;
 
     if (_authState == AuthState.login) {
       switchText = 'Sign Up';
       switchTextTwo = 'Forgot Password?';
       message = ', or did you ';
       switchToState = AuthState.signup;
+      switchToStateTwo = AuthState.forgotPassword;
     } else if (_authState == AuthState.signup) {
       switchText = 'Login';
       switchTextTwo = 'Forgot Password?';
       message = ', or did you ';
       switchToState = AuthState.login;
+      switchToStateTwo = AuthState.forgotPassword;
     } else {
       switchText = 'Login';
       switchTextTwo = 'SignUp';
       message = ', maybe you should ';
       switchToState = AuthState.login;
+      switchToStateTwo = AuthState.signup;
     }
 
     return Row(
@@ -234,7 +265,7 @@ class _LoginSignupState extends State<LoginSignup>
         GestureDetector(
           onTap: () {
             setState(() {
-              _authState = switchToState;
+              _authState = switchToStateTwo;
             });
           },
           child: Text(

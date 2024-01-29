@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vigilcn/screens/home_screen.dart';
 import 'package:lottie/lottie.dart';
 import 'package:vigilcn/screens/login_signup_screen.dart';
+import 'package:vigilcn/services/check_user_loggedin.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -41,8 +42,7 @@ class _SplashScreenState extends State<SplashScreen>
                 ..forward().whenComplete(() {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => const LoginSignup()),
+                    MaterialPageRoute(builder: (context) => const UserCheck()),
                   );
                 });
             },
