@@ -1,0 +1,105 @@
+{
+  "project_info": {
+    "project_number": "418491761551",
+    "project_id": "vigilcn-591c5",
+    "storage_bucket": "vigilcn-591c5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418491761551:android:bfa68104ebb0a0f54681fa",
+        "android_client_info": {
+          "package_name": "com.example.cds"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD19G3ADAGYGxwLkmIkIycxdXS0J7PiQR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418491761551:android:04ced6c50bb2f0104681fa",
+        "android_client_info": {
+          "package_name": "com.example.flutterbasics"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD19G3ADAGYGxwLkmIkIycxdXS0J7PiQR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418491761551:android:bd7770e83bca2e774681fa",
+        "android_client_info": {
+          "package_name": "com.example.prototype"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD19G3ADAGYGxwLkmIkIycxdXS0J7PiQR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418491761551:android:6d17b1cfcab0d4bf4681fa",
+        "android_client_info": {
+          "package_name": "com.example.vigilcn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD19G3ADAGYGxwLkmIkIycxdXS0J7PiQR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418491761551:android:9d3f33e0cf82c5a14681fa",
+        "android_client_info": {
+          "package_name": "com.svrge.vigilcn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD19G3ADAGYGxwLkmIkIycxdXS0J7PiQR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
